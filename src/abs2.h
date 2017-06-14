@@ -7,6 +7,19 @@ namespace Eigen {
 	using boost::units::quantity;
 	using boost::units::multiply_typeof_helper;
 
+	namespace numext {
+		template<
+			typename Unit,
+			typename Scalar
+		>
+		typename multiply_typeof_helper<
+			quantity<Unit, Scalar>,
+			quantity<Unit, Scalar>
+		>::type abs2(const quantity<Unit, Scalar> & x) {
+			return x * x;
+		}
+	} //namespace numext
+
 	namespace internal {
 		template<
 			typename Unit,
@@ -33,28 +46,17 @@ namespace Eigen {
 				quantity<Unit, Scalar>
 			>::type result_type;
 
-			EIGEN_DEVICE_FUNC
-			EIGEN_STRONG_INLINE const result_type operator() (const quantity<Unit, Scalar>& a) const {
+			EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE
+			const result_type operator() (const quantity<Unit, Scalar>& a) const {
 				return numext::abs2(a);
 			}
 
 			template<typename Packet>
-			EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE const Packet packetOp(const Packet& a) const {
+			EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE
+			const Packet packetOp(const Packet& a) const {
 				return internal::pmul(a,a);
 			}
 		};
 	} // namespace internal
 } // namespace Eigen
-
-template<
-	typename Unit,
-	typename Scalar
->
-typename boost::units::multiply_typeof_helper<
-	typename boost::units::quantity<Unit, Scalar>,
-	typename boost::units::quantity<Unit, Scalar>
->::type abs2(const boost::units::quantity<Unit, Scalar> & x) {
-	return x * x;
-}
-
 
