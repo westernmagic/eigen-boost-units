@@ -2,7 +2,6 @@
 #include <boost/units/cmath.hpp>
 #include <boost/units/limits.hpp>
 #include <boost/units/is_quantity.hpp>
-#define EIGEN_MATRIXBASE_PLUGIN "MatrixBaseAddons.h"
 #include <Eigen/Core>
 
 namespace Eigen {
