@@ -3,6 +3,17 @@
 #include <boost/units/cmath.hpp>
 #include <Eigen/Core>
 
+template<
+	typename Unit,
+	typename Scalar
+>
+typename boost::units::multiply_typeof_helper<
+	boost::units::quantity<Unit, Scalar>,
+	boost::units::quantity<Unit, Scalar>
+>::type abs2(const boost::units::quantity<Unit, Scalar> & x) {
+	return x * x;
+}
+
 namespace Eigen {
 	using boost::units::quantity;
 	using boost::units::multiply_typeof_helper;
@@ -16,7 +27,8 @@ namespace Eigen {
 			quantity<Unit, Scalar>,
 			quantity<Unit, Scalar>
 		>::type abs2(const quantity<Unit, Scalar> & x) {
-			return x * x;
+			using ::abs2;
+			return abs2(x);
 		}
 	} //namespace numext
 
