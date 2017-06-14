@@ -25,5 +25,6 @@ namespace {
 	using Vector3L = Matrix<Length, 3, 1>;
 	using Area = quantity<area, double>;
 	using Vector3A = Matrix<Area, 3, 1>;
+	using Vector3b = Matrix<bool, 3, 1>;
 }
 
