@@ -1,0 +1,6 @@
+find_package (OpenMP)
+if (OPENMP_FOUND)
+	list (APPEND CMAKE_C_FLAGS       ${OpenMP_C_FLAGS})
+	list (APPEND CMAKE_CXX_FLAGS     ${OpenMP_CXX_FLAGS})
+	list (APPEND CMAKE_FORTRAN_FLAGS ${OpenMP_Fortran_FLAGS})
+endif (OPENMP_FOUND)
