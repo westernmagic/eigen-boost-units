@@ -51,5 +51,21 @@ namespace Eigen {
 	> {
 		typedef quantity<typename multiply_typeof_helper<T1, T2>::type> ReturnType;
 	};
+	
+	template<
+		typename T1,
+		typename T2
+	>
+	struct ScalarBinaryOpTraits<
+		quantity<T1>,
+		quantity<T2>,
+		internal::scalar_product_op<
+			quantity<T1>,
+			quantity<T2>
+		>
+	> {
+		typedef quantity<typename multiply_typeof_helper<T1, T2>::type> ReturnType;
+	};
+	
 } // namespace Eigen
 
